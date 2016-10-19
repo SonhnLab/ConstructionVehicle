@@ -1,7 +1,7 @@
 package com.sonhnlab.pc.constructionvehicle.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.sonhnlab.pc.constructionvehicle.R;
 import com.sonhnlab.pc.constructionvehicle.entities.Joystick;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     RelativeLayout mLayout;
     Joystick mJoystick;
@@ -80,4 +80,8 @@ public class MainActivity extends Activity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

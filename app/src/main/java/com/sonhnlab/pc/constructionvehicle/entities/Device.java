@@ -12,8 +12,6 @@ public class Device {
 
     private String mAddress;
 
-    private String mSignal;
-
     //endregion
 
     //region Getter
@@ -26,18 +24,13 @@ public class Device {
         return mAddress;
     }
 
-    public String getSignal() {
-        return mSignal;
-    }
-
     //endregion
 
     //region Constructor
 
-    public Device(String name, String address, Short signal) {
+    public Device(String name, String address) {
         mName = name;
         mAddress = address;
-        mSignal = Short.toString(signal);
     }
 
     //endregion

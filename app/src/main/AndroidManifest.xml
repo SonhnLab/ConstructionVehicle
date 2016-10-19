@@ -25,6 +25,9 @@
             android:name=".activities.ConnectActivity"
             android:theme="@style/SplashTheme">
         </activity>
+        <activity
+            android:name=".activities.BluetoothActivity"
+            android:theme="@style/SplashTheme"/>
     </application>
 
 </manifest>

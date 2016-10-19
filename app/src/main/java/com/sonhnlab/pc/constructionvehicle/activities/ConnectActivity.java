@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sonhnlab.pc.constructionvehicle.R;
 
@@ -16,6 +17,8 @@ public class ConnectActivity extends AppCompatActivity {
     ImageView ivConnect;
 
     TextView tvConnect;
+
+    private static long sBackPressed;
 
     //endregion
 
@@ -33,20 +36,28 @@ public class ConnectActivity extends AppCompatActivity {
         ivConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ConnectActivity.this, MainActivity.class);
+                Intent intent = new Intent(ConnectActivity.this, BluetoothActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
         tvConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ConnectActivity.this, MainActivity.class);
+                Intent intent = new Intent(ConnectActivity.this, BluetoothActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (sBackPressed + 2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+        } else {
+            Toast.makeText(getBaseContext(), "Press one again to exit", Toast.LENGTH_SHORT).show();
+            sBackPressed = System.currentTimeMillis();
+        }
     }
 
     //endregion

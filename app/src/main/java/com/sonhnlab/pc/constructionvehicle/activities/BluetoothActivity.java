@@ -15,13 +15,90 @@
 
 package com.sonhnlab.pc.constructionvehicle.activities;
 
-import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public class BluetoothActivity extends Activity {
+import com.sonhnlab.pc.constructionvehicle.R;
+import com.sonhnlab.pc.constructionvehicle.adapters.DeviceAdapter;
+import com.sonhnlab.pc.constructionvehicle.entities.Device;
+
+import java.util.ArrayList;
+import java.util.Set;
+
+public class BluetoothActivity extends AppCompatActivity {
 
 	//region Properties
 
+    private View vLine;
 
+    private ListView mListDevices;
 
-	//endregion
+    private BluetoothAdapter mBluetoothAdapter = null;
+
+    private Set<BluetoothDevice> mPairedDevices;
+
+    public static String EXTRA_ADDRESS = "device_address";
+
+    //endregion
+
+    //region Override method
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_bluetooth);
+
+        vLine = (View) findViewById(R.id.v_line);
+        vLine.getBackground().setAlpha(128);
+
+        mListDevices = (ListView) findViewById(R.id.list_devices);
+
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        if (mBluetoothAdapter == null) {
+            Toast.makeText(getApplicationContext(), "Bluetooth device not available", Toast.LENGTH_SHORT).show();
+
+            finish();
+        }
+        else if (!mBluetoothAdapter.isEnabled()) {
+            Intent turnBTon = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(turnBTon, 1);
+        }
+
+        pairedDevicesList();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    //endregion
+
+    //region Private method
+
+    private void pairedDevicesList() {
+        mPairedDevices = mBluetoothAdapter.getBondedDevices();
+        ArrayList<Device> listDevices = new ArrayList<Device>();
+
+        if (mPairedDevices.size() > 0) {
+            for (BluetoothDevice bt : mPairedDevices) {
+                Device newDevice = new Device(bt.getName(), bt.getAddress());
+                listDevices.add(newDevice);
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "No paired Bluetooth devices found", Toast.LENGTH_SHORT).show();
+        }
+
+        final DeviceAdapter adapter = new DeviceAdapter(this, listDevices);
+        mListDevices.setAdapter(adapter);
+    }
+
+    //endregion
 }

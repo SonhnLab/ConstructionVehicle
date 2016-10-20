@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
     private void moveForward() {
         if (mBluetoothSocket != null) {
             try {
-                mBluetoothSocket.getOutputStream().write("FW".toString().getBytes());
+                mBluetoothSocket.getOutputStream().write(1);
             } catch (IOException e) {
                 msg("Error");
             }
@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
     private void moveBackward() {
         if (mBluetoothSocket != null) {
             try {
-                mBluetoothSocket.getOutputStream().write("BW".toString().getBytes());
+                mBluetoothSocket.getOutputStream().write(2);
             } catch (IOException e) {
                 msg("Error");
             }
@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
     private void turnLeft() {
         if (mBluetoothSocket != null) {
             try {
-                mBluetoothSocket.getOutputStream().write("TL".toString().getBytes());
+                mBluetoothSocket.getOutputStream().write(3);
             } catch (IOException e) {
                 msg("Error");
             }
@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
     private void turnRight() {
         if (mBluetoothSocket != null) {
             try {
-                mBluetoothSocket.getOutputStream().write("TR".toString().getBytes());
+                mBluetoothSocket.getOutputStream().write(4);
             } catch (IOException e) {
                 msg("Error");
             }
@@ -301,7 +301,9 @@ public class MainActivity extends AppCompatActivity {
     private void liftUp() {
         if (mBluetoothSocket != null) {
             try {
-                mBluetoothSocket.getOutputStream().write("LU".toString().getBytes());
+                mBluetoothSocket.getOutputStream().write(5);
+                byte[] x = "LU".toString().getBytes();
+                x.toString();
             } catch (IOException e) {
                 msg("Error");
             }
@@ -311,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
     private void liftDown() {
         if (mBluetoothSocket != null) {
             try {
-                mBluetoothSocket.getOutputStream().write("LD".toString().getBytes());
+                mBluetoothSocket.getOutputStream().write(6);
             } catch (IOException e) {
                 msg("Error");
             }
@@ -321,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
     private void stop() {
         if (mBluetoothSocket != null) {
             try {
-                mBluetoothSocket.getOutputStream().write("ST".toString().getBytes());
+                mBluetoothSocket.getOutputStream().write(0);
             } catch (IOException e) {
                 msg("Error");
             }

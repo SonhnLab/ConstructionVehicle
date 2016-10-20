@@ -6,8 +6,13 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -56,7 +61,271 @@ public class MainActivity extends AppCompatActivity {
 
         new ConnectBT().execute();
 
+        //region Move Forward
 
+        ivUp.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        moveForward();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ivUp.setImageDrawable(getResources().getDrawable(R.drawable.ic_up_press, getApplicationContext().getTheme()));
+                        } else {
+                            ivUp.setImageDrawable(getResources().getDrawable(R.drawable.ic_up_press));
+                        }
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        stop();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ivUp.setImageDrawable(getResources().getDrawable(R.drawable.ic_up, getApplicationContext().getTheme()));
+                        } else {
+                            ivUp.setImageDrawable(getResources().getDrawable(R.drawable.ic_up));
+                        }
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        //endregion
+
+        //region Move Backward
+
+        ivDown.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        moveBackward();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ivDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_down_press, getApplicationContext().getTheme()));
+                        } else {
+                            ivDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_down_press));
+                        }
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        stop();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ivDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_down, getApplicationContext().getTheme()));
+                        } else {
+                            ivDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_down));
+                        }
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        //endregion
+
+        //region Turn Left
+
+        ivLeft.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        turnLeft();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ivLeft.setImageDrawable(getResources().getDrawable(R.drawable.ic_left_press, getApplicationContext().getTheme()));
+                        } else {
+                            ivLeft.setImageDrawable(getResources().getDrawable(R.drawable.ic_left_press));
+                        }
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        stop();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ivLeft.setImageDrawable(getResources().getDrawable(R.drawable.ic_left, getApplicationContext().getTheme()));
+                        } else {
+                            ivLeft.setImageDrawable(getResources().getDrawable(R.drawable.ic_left));
+                        }
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        //endregion
+
+        //region Turn Right
+
+        ivRight.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        turnRight();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ivRight.setImageDrawable(getResources().getDrawable(R.drawable.ic_right_press, getApplicationContext().getTheme()));
+                        } else {
+                            ivRight.setImageDrawable(getResources().getDrawable(R.drawable.ic_right_press));
+                        }
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        stop();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ivRight.setImageDrawable(getResources().getDrawable(R.drawable.ic_right, getApplicationContext().getTheme()));
+                        } else {
+                            ivRight.setImageDrawable(getResources().getDrawable(R.drawable.ic_right));
+                        }
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        //endregion
+
+        //region Lift Up
+
+        ivLiftUp.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        liftUp();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ivLiftUp.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_up_press, getApplicationContext().getTheme()));
+                        } else {
+                            ivLiftUp.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_up_press));
+                        }
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        stop();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ivLiftUp.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_up, getApplicationContext().getTheme()));
+                        } else {
+                            ivLiftUp.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_up));
+                        }
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        //endregion
+
+        //region Lift Down
+
+        ivLifpDown.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        liftDown();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ivLifpDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_down_press, getApplicationContext().getTheme()));
+                        } else {
+                            ivLifpDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_down_press));
+                        }
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        stop();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ivLifpDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_down, getApplicationContext().getTheme()));
+                        } else {
+                            ivLifpDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_down));
+                        }
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        //endregion
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_disconnect) {
+            disconnect();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    //endregion
+
+    //region Control Car method
+
+    private void moveForward() {
+        if (mBluetoothSocket != null) {
+            try {
+                mBluetoothSocket.getOutputStream().write("FW".toString().getBytes());
+            } catch (IOException e) {
+                msg("Error");
+            }
+        }
+    }
+
+    private void moveBackward() {
+        if (mBluetoothSocket != null) {
+            try {
+                mBluetoothSocket.getOutputStream().write("BW".toString().getBytes());
+            } catch (IOException e) {
+                msg("Error");
+            }
+        }
+    }
+
+    private void turnLeft() {
+        if (mBluetoothSocket != null) {
+            try {
+                mBluetoothSocket.getOutputStream().write("TL".toString().getBytes());
+            } catch (IOException e) {
+                msg("Error");
+            }
+        }
+    }
+
+    private void turnRight() {
+        if (mBluetoothSocket != null) {
+            try {
+                mBluetoothSocket.getOutputStream().write("TR".toString().getBytes());
+            } catch (IOException e) {
+                msg("Error");
+            }
+        }
+    }
+
+    private void liftUp() {
+        if (mBluetoothSocket != null) {
+            try {
+                mBluetoothSocket.getOutputStream().write("LU".toString().getBytes());
+            } catch (IOException e) {
+                msg("Error");
+            }
+        }
+    }
+
+    private void liftDown() {
+        if (mBluetoothSocket != null) {
+            try {
+                mBluetoothSocket.getOutputStream().write("LD".toString().getBytes());
+            } catch (IOException e) {
+                msg("Error");
+            }
+        }
+    }
+
+    private void stop() {
+        if (mBluetoothSocket != null) {
+            try {
+                mBluetoothSocket.getOutputStream().write("ST".toString().getBytes());
+            } catch (IOException e) {
+                msg("Error");
+            }
+        }
     }
 
     //endregion
@@ -67,6 +336,7 @@ public class MainActivity extends AppCompatActivity {
         if (mBluetoothSocket != null) {
             try {
                 mBluetoothSocket.close();
+                msg("Disconnected");
             } catch (IOException e) {
                 msg("Error");
             }

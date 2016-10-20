@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ConstructionVehicle</string>
+    <string name="app_name">Construction Vehicle</string>
     <string name="search">Search for devices</string>
     <string name="hello_world">Hello world!</string>
+
+    <!-- String Action -->
     <string name="action_settings">Settings</string>
-    <string name="Bluetooth">Bluetooth</string>
+    <string name="action_info">Info</string>
+    <string name="action_bluetooth">Bluetooth</string>
+    <string name="action_disconnect">Disconnect</string>
 
 </resources>

@@ -111,10 +111,6 @@ public class BluetoothActivity extends AppCompatActivity {
             TextView tvAddress = (TextView) view.findViewById(R.id.tv_address);
             String address = tvAddress.getText().toString();
 
-//            String info = ((TextView) view).getText().toString();
-//            Log.d(TAG, "abc" + info.length());
-//            String address = info.substring(info.length() - 17);
-
             Intent intent = new Intent(BluetoothActivity.this, MainActivity.class);
             intent.putExtra(EXTRA_ADDRESS, address);
             startActivity(intent);

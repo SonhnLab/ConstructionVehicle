@@ -21,7 +21,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sonhnlab.pc.constructionvehicle.R;
@@ -44,6 +46,8 @@ public class BluetoothActivity extends AppCompatActivity {
     private Set<BluetoothDevice> mPairedDevices;
 
     public static String EXTRA_ADDRESS = "device_address";
+
+    public static String TAG = "BluetoothActivity";
 
     //endregion
 
@@ -98,7 +102,24 @@ public class BluetoothActivity extends AppCompatActivity {
 
         final DeviceAdapter adapter = new DeviceAdapter(this, listDevices);
         mListDevices.setAdapter(adapter);
+        mListDevices.setOnItemClickListener(mClickListener);
     }
+
+    private AdapterView.OnItemClickListener mClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            TextView tvAddress = (TextView) view.findViewById(R.id.tv_address);
+            String address = tvAddress.getText().toString();
+
+//            String info = ((TextView) view).getText().toString();
+//            Log.d(TAG, "abc" + info.length());
+//            String address = info.substring(info.length() - 17);
+
+            Intent intent = new Intent(BluetoothActivity.this, MainActivity.class);
+            intent.putExtra(EXTRA_ADDRESS, address);
+            startActivity(intent);
+        }
+    };
 
     //endregion
 }

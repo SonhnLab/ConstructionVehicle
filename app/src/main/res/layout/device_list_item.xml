@@ -7,21 +7,26 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
 
         <LinearLayout
             android:id="@+id/layout_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:padding="16dip">
+            android:padding="12dip">
 
             <TextView
                 android:id="@+id/tv_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1."
-                android:textSize="24sp"/>
+                android:textSize="22sp"/>
         </LinearLayout>
 
         <TextView
@@ -30,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/layout_number"
             android:text="HC-05"
-            android:textSize="24sp"/>
+            android:textSize="22sp"/>
         <TextView
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"
@@ -38,7 +43,7 @@
             android:layout_below="@+id/tv_name"
             android:layout_toRightOf="@+id/layout_number"
             android:text="98:D3:31:80:51:33"
-            android:textSize="24sp"/>
+            android:textSize="22sp"/>
 
     </RelativeLayout>
 

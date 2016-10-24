@@ -5,8 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.sonhnlab.pc.constructionvehicle.R;
@@ -15,9 +14,7 @@ public class ConnectActivity extends AppCompatActivity {
 
     //region Properties
 
-    ImageView ivConnect;
-
-    TextView tvConnect;
+    ImageButton ibConnect;
 
     private static long sBackPressed;
 
@@ -32,9 +29,7 @@ public class ConnectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connect);
 
-        ivConnect = (ImageView) findViewById(R.id.iv_connect);
-
-        tvConnect = (TextView) findViewById(R.id.tv_connect);
+        ibConnect = (ImageButton) findViewById(R.id.ib_connect);
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -44,7 +39,7 @@ public class ConnectActivity extends AppCompatActivity {
             finish();
         }
 
-        ivConnect.setOnClickListener(new View.OnClickListener() {
+        ibConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!mBluetoothAdapter.isEnabled()) {
@@ -57,18 +52,6 @@ public class ConnectActivity extends AppCompatActivity {
             }
         });
 
-        tvConnect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!mBluetoothAdapter.isEnabled()) {
-                    Intent turnBTon = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                    startActivityForResult(turnBTon, 1);
-                } else {
-                    Intent intent = new Intent(ConnectActivity.this, BluetoothActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
     }
 
     @Override

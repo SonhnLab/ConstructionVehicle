@@ -18,18 +18,18 @@
         android:layout_centerInParent="true"
         android:paddingBottom="24dip">
 
-        <ImageView
-            android:id="@+id/iv_connect"
+        <ImageButton
+            android:id="@+id/ib_connect"
             android:layout_width="172dp"
             android:layout_height="172dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_connect"/>
+            android:background="@drawable/selector_connect"/>
 
         <TextView
             android:id="@+id/tv_connect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_connect"
+            android:layout_below="@+id/ib_connect"
             android:layout_centerHorizontal="true"
             android:text="Connect"
             android:textColor="@android:color/white"

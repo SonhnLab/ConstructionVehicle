@@ -76,10 +76,8 @@ public class MainActivity extends AppCompatActivity {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         moveForward();
-                        Toast.makeText(getBaseContext(), "Forward", Toast.LENGTH_SHORT).show();
                     case MotionEvent.ACTION_UP:
                         stop();
-                        Toast.makeText(getBaseContext(), "Stop", Toast.LENGTH_SHORT).show();
                 }
                 return false;
             }

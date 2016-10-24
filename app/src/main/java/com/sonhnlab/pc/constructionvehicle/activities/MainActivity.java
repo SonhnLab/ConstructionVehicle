@@ -4,10 +4,12 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     //region Properties
 
-    private ImageView ivUp, ivDown, ivLeft, ivRight, ivLiftUp, ivLifpDown;
+    private ImageView ivUp, ivDown, ivLeft, ivRight, ivLiftUp, ivLiftDown;
 
     private String mAddress = null;
 
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     BluetoothSocket mBluetoothSocket = null;
 
     private boolean isBTConnected = false;
+
+    private static long sBackPressed;
 
     static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
@@ -57,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         ivLeft = (ImageView) findViewById(R.id.iv_left);
         ivRight = (ImageView) findViewById(R.id.iv_right);
         ivLiftUp = (ImageView) findViewById(R.id.iv_lift_up);
-        ivLifpDown = (ImageView) findViewById(R.id.iv_lift_down);
+        ivLiftDown = (ImageView) findViewById(R.id.iv_lift_down);
 
         new ConnectBT().execute();
 
@@ -208,24 +212,24 @@ public class MainActivity extends AppCompatActivity {
 
         //region Lift Down
 
-        ivLifpDown.setOnTouchListener(new View.OnTouchListener() {
+        ivLiftDown.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         liftDown();
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            ivLifpDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_down_press, getApplicationContext().getTheme()));
+                            ivLiftDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_down_press, getApplicationContext().getTheme()));
                         } else {
-                            ivLifpDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_down_press));
+                            ivLiftDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_down_press));
                         }
                         return true;
                     case MotionEvent.ACTION_UP:
                         stop();
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            ivLifpDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_down, getApplicationContext().getTheme()));
+                            ivLiftDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_down, getApplicationContext().getTheme()));
                         } else {
-                            ivLifpDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_down));
+                            ivLiftDown.setImageDrawable(getResources().getDrawable(R.drawable.ic_lift_down));
                         }
                         return true;
                 }
@@ -248,10 +252,42 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_disconnect) {
-            disconnect();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.DialogTheme);
+            builder.setTitle("Disconnect Bluetooth")
+                    .setMessage("Are you sure want to disconnect Bluetooth?")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            disconnect();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    })
+                    .setIcon(R.drawable.ic_action_disconnect)
+                    .show();
+        }
+
+        if (id == R.id.action_info) {
+            Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getBaseContext(), "Press disconnect button to back", Toast.LENGTH_SHORT).show();
+//        if (sBackPressed + 2000 > System.currentTimeMillis()){
+//            super.onBackPressed();
+//        } else {
+//            Toast.makeText(getBaseContext(), "Press one again to exit", Toast.LENGTH_SHORT).show();
+//            sBackPressed = System.currentTimeMillis();
+//        }
     }
 
     //endregion

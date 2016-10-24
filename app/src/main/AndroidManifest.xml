@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -20,14 +21,23 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity"/>
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.ConnectActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
         </activity>
         <activity
             android:name=".activities.BluetoothActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme"/>
+        <activity
+            android:name=".activities.InfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+        </activity>
     </application>
 
 </manifest>

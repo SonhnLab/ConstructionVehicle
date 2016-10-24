@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">Construction Vehicle</string>
-    <string name="search">Search for devices</string>
     <string name="hello_world">Hello world!</string>
 
     <!-- String Action -->

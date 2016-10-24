@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     //region Properties
 
     private ImageView ivUp, ivDown, ivLeft, ivRight, ivLiftUp, ivLiftDown;
+
+    private ImageButton ibUp;
 
     private String mAddress = null;
 
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        ivUp = (ImageView) findViewById(R.id.iv_up);
+        ibUp = (ImageButton) findViewById(R.id.ib_up);
         ivDown = (ImageView) findViewById(R.id.iv_down);
         ivLeft = (ImageView) findViewById(R.id.iv_left);
         ivRight = (ImageView) findViewById(R.id.iv_right);
@@ -67,26 +70,16 @@ public class MainActivity extends AppCompatActivity {
 
         //region Move Forward
 
-        ivUp.setOnTouchListener(new View.OnTouchListener() {
+        ibUp.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         moveForward();
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            ivUp.setImageDrawable(getResources().getDrawable(R.drawable.ic_up_press, getApplicationContext().getTheme()));
-                        } else {
-                            ivUp.setImageDrawable(getResources().getDrawable(R.drawable.ic_up_press));
-                        }
-                        return true;
+                        Toast.makeText(getBaseContext(), "Forward", Toast.LENGTH_SHORT).show();
                     case MotionEvent.ACTION_UP:
                         stop();
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            ivUp.setImageDrawable(getResources().getDrawable(R.drawable.ic_up, getApplicationContext().getTheme()));
-                        } else {
-                            ivUp.setImageDrawable(getResources().getDrawable(R.drawable.ic_up));
-                        }
-                        return true;
+                        Toast.makeText(getBaseContext(), "Stop", Toast.LENGTH_SHORT).show();
                 }
                 return false;
             }

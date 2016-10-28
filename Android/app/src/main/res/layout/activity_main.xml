@@ -14,29 +14,29 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
-        <ImageButton
-            android:id="@+id/ib_up"
+        <ImageView
+            android:id="@+id/iv_up"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/selector_up"/>
+            android:src="@drawable/ic_up"/>
 
         <ImageView
             android:id="@+id/iv_right"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:layout_below="@+id/ib_up"
+            android:layout_below="@+id/iv_up"
             android:layout_centerHorizontal="true"
-            android:layout_toRightOf="@+id/ib_up"
+            android:layout_toRightOf="@+id/iv_up"
             android:src="@drawable/ic_right"/>
 
         <ImageView
             android:id="@+id/iv_left"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:layout_below="@+id/ib_up"
+            android:layout_below="@+id/iv_up"
             android:layout_centerHorizontal="true"
-            android:layout_toLeftOf="@+id/ib_up"
+            android:layout_toLeftOf="@+id/iv_up"
             android:src="@drawable/ic_left"/>
 
         <ImageView
